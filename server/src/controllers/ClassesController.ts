@@ -10,6 +10,37 @@ interface ScheduleItem {
 }
 
 export default class ClassesController {
+  async index(request: Request, response: Response) {
+    const filter = request.query;
+
+    const subject = filter.subject as string;
+    const week_day = filter.week_day as string;
+    const time = filter.time as string;
+
+    if (!subject || !week_day || !time) {
+      return response.status(400).json({
+        error: "Missing filter on class search"
+      });
+    }
+
+    const timeInMinutes = timeUtils.convertHourStringToMinutes(time);
+
+    const classes = await db('classes')
+      .whereExists(function () {
+        this.select('class_schedule.*')
+          .from('class_schedule')
+          .whereRaw('`class_schedule`.`class_id` = `classes`.`id`')
+          .whereRaw('`class_schedule`.`week_day` = ??', [Number(week_day)])
+          .whereRaw('`class_schedule`.`from` <= ??', [timeInMinutes])
+          .whereRaw('`class_schedule`.`to` > ??', [timeInMinutes])
+      })
+      .where('classes.subject', '=', subject)
+      .join('users', 'classes.user_id', '=', 'users.id')
+      .select(['classes.*', 'users.*']);
+
+    return response.json(classes).send();
+  }
+
   async create(request: Request, response: Response) {
     const {
       name,
@@ -66,3 +97,4 @@ export default class ClassesController {
       })
     }
   }
+}
