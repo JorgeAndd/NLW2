@@ -1,12 +1,13 @@
 import React from "react";
+
 import PageHeader from "../../components/PageHeader";
 import Input from "../../components/Input";
+import TextArea from "../../components/TextArea";
+import Select from "../../components/Select";
 
 import warningIcon from '../../assets/images/icons/warning.svg';
 
 import './styles.css';
-import TextArea from "../../components/TextArea";
-import Select from "../../components/Select";
 
 function TeacherForm() {
   return (
