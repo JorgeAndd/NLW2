@@ -5,6 +5,8 @@ import TeacherItem from "../../components/TeacherItem";
 import Input from "../../components/Input";
 import Select from "../../components/Select";
 
+import searchIcon from '../../assets/images/icons/search.svg';
+
 import './styles.css';
 
 function TeacherList() {
@@ -42,6 +44,10 @@ function TeacherList() {
           />
 
           <Input type="time" name="time" label="Horário" />
+
+          <button type="submit">
+            <img src={searchIcon} alt="Buscar" />
+          </button>
         </form>
       </PageHeader>
 
