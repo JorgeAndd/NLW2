@@ -8,7 +8,10 @@ function TeacherItem() {
   return (
     <article className="teacher-item">
       <header>
-        <img src="https://avatars0.githubusercontent.com/u/5915194?s=460&u=7b4f6b1f167f91841f3db53984eb52c87f486c2d&v=4" />
+        <img
+          src="https://avatars0.githubusercontent.com/u/5915194?s=460&u=7b4f6b1f167f91841f3db53984eb52c87f486c2d&v=4"
+          alt="avatar"
+        />
         <div>
           <strong>Jorge Luiz Andrade</strong>
           <span>Física</span>
