@@ -25,7 +25,6 @@ function TeacherList() {
       .then(response => {
         if (response) {
           setFavorites(JSON.parse(response));
-          console.log(favorites);
         }
       })
 
