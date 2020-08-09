@@ -37,6 +37,21 @@ const styles = StyleSheet.create({
     marginTop: 4,
     marginBottom: 16,
   },
+
+  searchButton: {
+    backgroundColor: '#04D361',
+    height: 56,
+    borderRadius: 8,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  searchButtonText: {
+    fontFamily: 'Archivo_700Bold',
+    color: '#FFF',
+    fontSize: 16,
+  }
 });
 
 export default styles;
