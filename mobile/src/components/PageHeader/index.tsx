@@ -13,7 +13,7 @@ interface PageHeaderProps {
 }
 
 const PageHeader: React.FC<PageHeaderProps> = (props) => {
-  const { title } = props;
+  const { title, children } = props;
 
   const navigation = useNavigation();
 
@@ -32,6 +32,8 @@ const PageHeader: React.FC<PageHeaderProps> = (props) => {
       </View>
 
       <Text style={styles.title}>{title}</Text>
+
+      {children}
     </View>
   );
 }
