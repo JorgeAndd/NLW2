@@ -10,7 +10,7 @@ import styles from './styles';
 
 interface PageHeaderProps {
   title: string;
-  headerRight: ReactNode;
+  headerRight?: ReactNode;
 }
 
 const PageHeader: React.FC<PageHeaderProps> = (props) => {
