@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
 
   buttonsContainer: {
     flexDirection: 'row',
-    marginTop: 16,
+    marginTop: 8,
   },
 
   favoriteButton: {

@@ -75,10 +75,12 @@ const TeacherItem: React.FC<TeacherItemProps> = (props) => {
       </Text>
 
       <View style={styles.footer}>
-        <Text style={styles.price}>
-          Preço/hora {'   '}
-          <Text style={styles.priceValue}>R$ {teacher.cost}</Text>
-        </Text>
+        {teacher.cost &&
+          <Text style={styles.price}>
+            Preço/hora {'   '}
+            <Text style={styles.priceValue}>R$ {teacher.cost}</Text>
+          </Text>
+        }
 
         <View style={styles.buttonsContainer}>
           <RectButton
