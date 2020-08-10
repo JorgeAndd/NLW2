@@ -14,7 +14,8 @@ As seguintes funcionalidades não estava contempladas nas aulas, mas são sugest
 
 **Mobile**
 - [ ] Uso de select para filtragem de matéria, dia e data
-- [ ] Listagem de favoritos, recuperando do banco
+- [x] Listagem de favoritos, recuperando do banco
+  - [ ] Atualizar listagem ao desfavoritar (Context)
 
 **Outros**
 - [ ] Deploy da aplicação 
