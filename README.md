@@ -13,7 +13,10 @@ As seguintes funcionalidades não estava contempladas nas aulas, mas são sugest
 - [ ] Perfil do professor editável
 
 **Mobile**
-- [ ] Uso de select para filtragem de matéria, dia e data
+- [x] Uso de select para filtragem de matéria e dia da semana
+  - [ ] Melhorar estilização do picker
+  - [ ] Adicionar placeholder no picker
+- [ ] Usar seletor de hora
 - [x] Listagem de favoritos, recuperando do banco
   - [ ] Atualizar listagem ao desfavoritar (Context)
 
