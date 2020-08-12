@@ -84,7 +84,7 @@ function TeacherList() {
                 <Text style={styles.label}>Dia da semana</Text>
 
                 <Picker
-                  selectedValue={subject}
+                  selectedValue={week_day}
                   style={styles.input}
                   onValueChange={(value) => setWeekday(value)}
                 >
