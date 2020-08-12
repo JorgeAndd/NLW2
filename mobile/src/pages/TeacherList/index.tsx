@@ -3,7 +3,9 @@ import { View, ScrollView, Text, TextInput } from 'react-native';
 import { BorderlessButton, RectButton } from 'react-native-gesture-handler';
 import { Feather } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-community/async-storage';
-import { Picker } from 'react-native'
+import { Picker } from 'react-native';
+import { Event } from '@react-native-community/datetimepicker';
+import moment from 'moment';
 
 import PageHeader from '../../components/PageHeader';
 import TeacherItem, { Teacher } from '../../components/TeacherItem';
@@ -11,15 +13,17 @@ import TeacherItem, { Teacher } from '../../components/TeacherItem';
 import api from '../../services/api';
 
 import styles from './styles';
+import RNDateTimePicker from '@react-native-community/datetimepicker';
 
 function TeacherList() {
   const [teachers, setTeachers] = useState([]);
   const [favorites, setFavorites] = useState<number[]>([]);
   const [showingFilters, setShowingFilters] = useState(false);
+  const [selectingTime, setSelectingTime] = useState(false);
 
   const [subject, setSubject] = useState('');
   const [week_day, setWeekday] = useState('');
-  const [time, setTime] = useState('');
+  const [time, setTime] = useState(new Date());
 
   useEffect(() => {
     AsyncStorage.getItem('favorites')
@@ -35,19 +39,36 @@ function TeacherList() {
     setShowingFilters(!showingFilters);
   }
 
-  async function filter() {
-    console.log(subject, week_day, time);
+  function onChangeTime(event: Event, selectedTime?: Date) {
+    setSelectingTime(false);
+    setTime(selectedTime || time);
+  }
 
-    const response = await api.get('classes', {
-      params: {
-        subject,
-        week_day,
-        time,
-      }
-    });
+  function getTimeAsString(time: Date) {
+    const timeAsString = moment(time).format('HH:mm');
+    return timeAsString;
+  }
+
+  async function filter() {
+    const timeAsString = moment(time).format('HH:mm');
+
+    try {
+      const response = await api.get('classes', {
+        params: {
+          subject,
+          week_day,
+          time: timeAsString,
+        }
+      });
+
+      setTeachers(response.data);
+    } catch (error) {
+      alert('Erro ao recuperar professores');
+    }
+
 
     setShowingFilters(false);
-    setTeachers(response.data);
+
   }
 
   return (
@@ -100,13 +121,22 @@ function TeacherList() {
 
               <View style={styles.inputBlock}>
                 <Text style={styles.label}>Horário</Text>
+
                 <TextInput
                   style={styles.input}
-                  value={time}
-                  onChangeText={text => setTime(text)}
+                  value={getTimeAsString(time)}
+                  onTouchStart={() => setSelectingTime(true)}
                   placeholder='Qual o horário?'
                   placeholderTextColor='#C1BCCC'
                 />
+
+                {selectingTime && (
+                  <RNDateTimePicker
+                    mode="time"
+                    value={time}
+                    onChange={onChangeTime}
+                  />
+                )}
               </View>
             </View>
 
