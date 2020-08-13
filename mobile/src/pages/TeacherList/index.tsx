@@ -39,6 +39,22 @@ function TeacherList() {
     setShowingFilters(!showingFilters);
   }
 
+  function handleChangeSubject(value: string) {
+    if (value !== '') {
+      setSubject(value);
+    }
+  }
+
+  function handleChangeWeekday(value: string) {
+    if (value !== '') {
+      setWeekday(value);
+    }
+  }
+
+  function canSearch() {
+    return subject !== '' && week_day !== '';
+  }
+
   function onChangeTime(event: Event, selectedTime?: Date) {
     setSelectingTime(false);
     setTime(selectedTime || time);
@@ -88,8 +104,9 @@ function TeacherList() {
             <Picker
               selectedValue={subject}
               style={styles.input}
-              onValueChange={(value) => setSubject(value)}
+              onValueChange={handleChangeSubject}
             >
+              <Picker.Item value='' label='Escolha uma matéria' />
               <Picker.Item value='Artes' label='Artes' />
               <Picker.Item value='Física' label='Física' />
               <Picker.Item value='Matemática' label='Matemática' />
@@ -107,8 +124,9 @@ function TeacherList() {
                 <Picker
                   selectedValue={week_day}
                   style={styles.input}
-                  onValueChange={(value) => setWeekday(value)}
+                  onValueChange={handleChangeWeekday}
                 >
+                  <Picker.Item value='' label='Escolha dia' />
                   <Picker.Item value='0' label='Domingo' />
                   <Picker.Item value='1' label='Segunda-feira' />
                   <Picker.Item value='2' label='Terça-feira' />
@@ -141,7 +159,12 @@ function TeacherList() {
             </View>
 
             <RectButton
-              style={styles.searchButton}
+              style={
+                canSearch() ?
+                  styles.searchButton :
+                  { ...styles.searchButton, ...styles.searchButtonDisabled }
+              }
+              enabled={canSearch()}
               onPress={filter}
             >
               <Text style={styles.searchButtonText}>Buscar</Text>

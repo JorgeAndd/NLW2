@@ -38,12 +38,16 @@ const styles = StyleSheet.create({
   },
 
   searchButton: {
-    backgroundColor: '#04D361',
+    backgroundColor: '#25fa85',
     height: 56,
     borderRadius: 8,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+
+  searchButtonDisabled: {
+    backgroundColor: '#25fa85cc',
   },
 
   searchButtonText: {

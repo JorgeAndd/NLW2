@@ -15,7 +15,7 @@ As seguintes funcionalidades não estava contempladas nas aulas, mas são sugest
 **Mobile**
 - [x] Uso de select para filtragem de matéria e dia da semana
   - [ ] Melhorar estilização do picker
-  - [ ] Adicionar placeholder no picker
+  - [x] Adicionar placeholder no picker
 - [x] Usar seletor de hora
 - [x] Listagem de favoritos, recuperando do banco
   - [ ] Atualizar listagem ao desfavoritar (Context)
